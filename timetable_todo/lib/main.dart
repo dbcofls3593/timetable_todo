@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/todoPage.dart';
 import 'package:timetable_todo/developerPage.dart';
+import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
+import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
+import 'package:timetable_todo/Dialog/lectureDialog.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -16,9 +19,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TTD',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        //final ThemeData base = ThemeData.light();
+        //return base.copyWith(
+        primaryColor: Colors.green,
+        scaffoldBackgroundColor: Colors.blue,
+        cardColor: Colors.redAccent,
+        //),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LectureDialog(),
     );
   }
 }
