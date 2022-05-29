@@ -6,6 +6,7 @@ import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
 import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureDialog.dart';
+import './timetableSource/Detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,11 +23,11 @@ class MyApp extends StatelessWidget {
         //final ThemeData base = ThemeData.light();
         //return base.copyWith(
         primaryColor: Colors.green,
-        scaffoldBackgroundColor: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
         cardColor: Colors.redAccent,
         //),
       ),
-      home: LectureDialog(),
+      home: MyHomePage(title: ""),
     );
   }
 }
@@ -52,9 +53,30 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title,style: TextStyle(color: Colors.black),),
-        backgroundColor: Color(0xffF5F4F2),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70.0),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          flexibleSpace: Container(),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(height: 10),
+                Text(widget.title,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23),
+                ),
+              ],
+            ),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0.3,
+        ),
       ),
       body: TabBarView(
         children: <Widget> [timetablePage(),todoPage(),developerPage()],
