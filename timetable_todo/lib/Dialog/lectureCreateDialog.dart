@@ -41,6 +41,10 @@ class _MyAlertDialogState extends State<CreateDialog> {
                         Row(
                           children: [
                             Text("시간", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
+                          ],
+                        ),
+                        Row(
+                          children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(

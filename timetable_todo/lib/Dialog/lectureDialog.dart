@@ -31,8 +31,12 @@ AlertDialog lectureDialog(BuildContext context){
               IconButton(
                   icon: Icon(Icons.create, color: Colors.black45, size: 24),
                   onPressed: (){
+                    showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => CreateDialog()
+                    );
 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CreateDialog()));
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => CreateDialog()));
                   }),
               IconButton(
                   icon: Icon(Icons.delete, color: Colors.black45, size: 24),
