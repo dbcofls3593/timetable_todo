@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         //final ThemeData base = ThemeData.light();
         //return base.copyWith(
         primaryColor: Colors.green,
-        scaffoldBackgroundColor: Colors.white,
+        //scaffoldBackgroundColor: Colors.red,
         cardColor: Colors.redAccent,
         //),
       ),
@@ -53,7 +53,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         controller: controller,
       ),
       bottomNavigationBar: TabBar(
-        indicatorColor: Colors.transparent,
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          )
+        ),
+        indicatorColor: Colors.redAccent,
         indicatorWeight: 30,
         tabs: <Tab>[
           Tab(icon: Icon(Icons.dashboard,color: Color(0xff323232),),),
