@@ -41,60 +41,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
-  int _counter = 0;
   TabController? controller;
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.0),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          flexibleSpace: Container(),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(height: 10),
-                Text(widget.title,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23),
-                ),
-              ],
-            ),
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0.3,
-        ),
-      ),
       body: TabBarView(
-        children: <Widget> [timetablePage(),todoPage(),developerPage()],
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget> [timetablePage(),TodoList(),developerPage()],
         controller: controller,
       ),
       bottomNavigationBar: TabBar(
         indicatorColor: Colors.transparent,
+        indicatorWeight: 30,
         tabs: <Tab>[
           Tab(icon: Icon(Icons.dashboard,color: Color(0xff323232),),),
           Tab(icon: Icon(Icons.check_circle_outline,color: Color(0xff323232)),),
           Tab(icon: Icon(Icons.people_alt,color: Color(0xff323232)),),
         ], controller: controller,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
   @override

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
-import 'package:f_datetimerangepicker/f_datetimerangepicker.dart';
 
 AlertDialog lectureDialog(BuildContext context){
   return AlertDialog(

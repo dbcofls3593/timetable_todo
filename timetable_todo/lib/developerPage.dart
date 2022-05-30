@@ -20,9 +20,31 @@ class _developerPage extends State<developerPage>{
     final height =size.height;
 
     return Scaffold(
-      /*appBar: AppBar(title: Text('개발자 김유정 고2',style: TextStyle(color: Colors.black),),
-        backgroundColor: Color(0xffF5F4F2),
-      ),*/
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70.0),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          flexibleSpace: Container(),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(height: 10),
+                Text('개발자 김유정 고2',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23),
+                ),
+              ],
+            ),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0.3,
+        ),
+      ),
       body: Container(
         child: Center(
           child: Column(
@@ -30,7 +52,7 @@ class _developerPage extends State<developerPage>{
             children: <Widget>[
               Container(
                   width: width* 1,
-                  height: height* 0.2,
+                  height: height* 0.15,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -79,7 +101,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.2,
+                  height: height* 0.15,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -128,7 +150,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.2,
+                  height: height* 0.15,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -177,7 +199,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.2,
+                  height: height* 0.15,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
