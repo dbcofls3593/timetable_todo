@@ -56,11 +56,11 @@ class _timetablePageState extends State<timetablePage> {
                                     ],
                                   ),
                                   // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
-                                  myLecture("UI/UX 프로그래밍", "안용학", "1", 5, 7, "아) 2공 509호", 0xffb74093),//myLecture()
-                                  myLecture("hello", "하이", "3", 1, 3, "아산", 0xffb74093),
-                                  myLecture("hello", "하이", "5", 4, 6, "아산", 0xffb74093),
-                                  myLecture("test", "정민성", "1", 1, 3, "오산", 0xffb74093),
-                                  myLecture("test", "정민성", "1", 1, 3, "오산", 0xffb22293),
+                                  myLecture(context, "UI/UX 프로그래밍", "안용학", "1", 5, 7, "아) 2공 509호", 0xffb74093),//myLecture()
+                                  myLecture(context,"hello", "하이", "3", 1, 3, "아산", 0xffb74093),
+                                  myLecture(context,"hello", "하이", "5", 4, 6, "아산", 0xffb74093),
+                                  myLecture(context,"test", "정민성", "1", 1, 3, "오산", 0xffb74093),
+                                  myLecture(context, "test", "정민성", "1", 1, 3, "오산", 0xffb22293),
                                 ],
                               ),
                             ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:timetable_todo/Dialog/lectureDialog.dart';
 
 // 무슨 요일, 몇 시, 몇 시간
 // days의 값에 따라 x값 변화
 // hour와 min의 값에 다라 y값이 변화
-Positioned myLecture(String subjects, String professor, String days, double startclass,double endclass, String place, int color){
+Positioned myLecture(BuildContext context, String subjects, String professor, String days, double startclass,double endclass, String place, int color){
   String _subjects = subjects; // 수업명
   String _professor = professor; // 교수명
   double _days = 45.3 * int.parse(days); // 요일 월:1, 화:2, ... , 일:7
@@ -18,8 +19,16 @@ Positioned myLecture(String subjects, String professor, String days, double star
     top: _class,
     left: _days,
     child: GestureDetector(
-      onTap: (){
-        print("stack timetable click");
+      onTap: () async { // mark the function as async
+        // await the dialog
+        await showDialog(
+            context: context,
+            builder: (context){
+              return lectureDialog(context);
+            }
+              );
+        // Doesn't run
+        Navigator.pop(context);
       },
       child: Container(
         //한 칸 기준, h: 50, width: 45

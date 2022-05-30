@@ -1,60 +1,137 @@
 import 'package:flutter/material.dart';
+import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
+import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:f_datetimerangepicker/f_datetimerangepicker.dart';
 
-class LectureDialog extends StatefulWidget {
-  @override
-  _LectureDialogState createState() => _LectureDialogState();
-}
+AlertDialog lectureDialog(BuildContext context){
+  return AlertDialog(
+    insetPadding: EdgeInsets.all(20),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
+    title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:[
+          Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.amber
+                ),
+                height: 29,
+                width: 7,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 7),
+                child: Text('UI/UX프로그래밍', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
+              ),
+            ],
+          ),
 
-class _LectureDialogState extends State<LectureDialog> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.lightGreen,
-      child: Center(
+          Row(
+            children: [
+              IconButton(
+                  icon: Icon(Icons.create, color: Colors.black45, size: 24),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CreateDialog()));
+                  }),
+              IconButton(
+                  icon: Icon(Icons.delete, color: Colors.black45, size: 24),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DeleteDialog(context)));
+                  }),
+            ],
+          ),
+        ]
+    ),
+    content:
+    Container(
+      width: 700,
+      //height: 800,
+      child: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(
-                child: Text("조회"),
-                onPressed: (){
-                  showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) =>
-                    AlertDialog(
-                      insetPadding: EdgeInsets.all(20),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
-                      title: Row(
-                        children:[
-                          Icon(Icons.access_alarms_outlined, color: Colors.amber, size: 30),
-                          Text(' UI/UX프로그래밍', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 27)),
-                          Icon(Icons.add, color: Colors.black45, size: 20),
-                          Icon(Icons.access_alarms_outlined, color: Colors.black45, size: 20),
-                        ]
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Text('안용학', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45,fontSize: 13), ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('수 9:30 - 12:30', style: TextStyle(color: Colors.black45,fontSize: 13)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('아) 2공 509', style: TextStyle(color: Colors.black45,fontSize: 13)),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+                height: 10
+            ),
+            Container(
+              height: 300,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('TO-DO', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+                      IconButton(
+                          icon: Icon(Icons.add_circle_outline),
+                          onPressed: (){}),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                              icon: Icon(Icons.circle_outlined,size: 17),
+                              onPressed: (){}
+                          ),
+                          Container(width: 11),
+                          Text("UI/UX Programming Project", style: TextStyle(fontSize: 13))
+                        ],
                       ),
-                      content:
-                        Container(
-                            width: 700,
-                            alignment: Alignment.centerLeft,
-                              child: Container(
-                                child: Column(
-                                  children: [
-                                    Text('안용학', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45)),
-                                    Text('수 9:30 - 12:30', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45)),
-                                    Text('아) 2공 509', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45)),
-                                    Text(" "),
-                                    Text('TO-DO', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                                  ],
-                                ),
-                              ),
-
-                        ),
-                    ),
-              );
-            })
+                      Divider(
+                        height: 30,
+                        thickness: 1,
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.circle_outlined,size: 17,),
+                          Container(width: 11,),
+                          Text("SW PPT", style: TextStyle(fontSize: 13))
+                        ],
+                      ),
+                      Divider(
+                        height: 30,
+                        thickness: 1,
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.circle_outlined,size: 17,),
+                          Container(width: 11,),
+                          Text("SW PPT", style: TextStyle(fontSize: 13))
+                        ],
+                      ),
+                      Divider(
+                        height: 30,
+                        thickness: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }
