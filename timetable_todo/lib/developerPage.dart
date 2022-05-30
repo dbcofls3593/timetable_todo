@@ -52,7 +52,7 @@ class _developerPage extends State<developerPage>{
             children: <Widget>[
               Container(
                   width: width* 1,
-                  height: height* 0.15,
+                  height: height* 0.17,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -101,7 +101,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.15,
+                  height: height* 0.17,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -150,7 +150,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.15,
+                  height: height* 0.17,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -199,7 +199,7 @@ class _developerPage extends State<developerPage>{
               ),
               Container(
                   width: width* 1,
-                  height: height* 0.15,
+                  height: height* 0.17,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
