@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 
+
 class developerPage extends StatefulWidget{
   const developerPage({Key? key}) : super(key: key);
 
@@ -10,7 +11,14 @@ class developerPage extends StatefulWidget{
 }
 
 class _developerPage extends State<developerPage>{
+
+
+
   Widget build(BuildContext context){
+    final size =MediaQuery.of(context).size;
+    final width =size.width;
+    final height =size.height;
+
     return Scaffold(
       /*appBar: AppBar(title: Text('개발자 김유정 고2',style: TextStyle(color: Colors.black),),
         backgroundColor: Color(0xffF5F4F2),
@@ -21,8 +29,8 @@ class _developerPage extends State<developerPage>{
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                  width: 400.0,
-                  height: 149.0,
+                  width: width* 1,
+                  height: height* 0.2,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -70,8 +78,8 @@ class _developerPage extends State<developerPage>{
                   )
               ),
               Container(
-                  width: 400.0,
-                  height: 149.0,
+                  width: width* 1,
+                  height: height* 0.2,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -119,8 +127,8 @@ class _developerPage extends State<developerPage>{
                   )
               ),
               Container(
-                  width: 400.0,
-                  height: 149.0,
+                  width: width* 1,
+                  height: height* 0.2,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
@@ -168,8 +176,8 @@ class _developerPage extends State<developerPage>{
                   )
               ),
               Container(
-                  width: 400.0,
-                  height: 149.0,
+                  width: width* 1,
+                  height: height* 0.2,
                   decoration: BoxDecoration(
                     color: Color(0xffECECEC),
                   ),
