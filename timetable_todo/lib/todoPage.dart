@@ -56,12 +56,19 @@ class TodoList extends StatefulWidget {
   _TodoListState createState() => new _TodoListState();
 }
 
-class _TodoListState extends State<TodoList> {
+
+
+class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<TodoList>{
+
   final TextEditingController _textFieldController = TextEditingController();
   final List<Todo> _todos = <Todo>[];
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return  Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0),
@@ -180,7 +187,6 @@ class _TodoListState extends State<TodoList> {
       },
 
     );
-    Navigator.of(context, rootNavigator: true).pop();
   }
 }
 
