@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import './timetableSource/hourTable.dart';
 import './timetableSource/myTable.dart';
 import './timetableSource/myLecture.dart';
+import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import './Dialog/lectureCreateDialog.dart';
 
 class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
@@ -12,8 +14,10 @@ class timetablePage extends StatefulWidget {
 }
 
 class _timetablePageState extends State<timetablePage> {
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0),
@@ -126,6 +130,7 @@ class _timetablePageState extends State<timetablePage> {
                                 3,
                                 "오산",
                                 0xffb22293),
+
                           ],
                         ),
                       ),
@@ -135,14 +140,16 @@ class _timetablePageState extends State<timetablePage> {
           )
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
-
+          showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => CreateDialog()
+          );
         },
-        child: const Icon(
-
-          Icons.add,
+        child: const Icon(Icons.add,color: Colors.black,size: 30,),
+        shape: RoundedRectangleBorder(side: BorderSide(width: 3,color: Colors.black12),borderRadius: BorderRadius.circular(100)),
         ),
-      ),
     );
   }
 }

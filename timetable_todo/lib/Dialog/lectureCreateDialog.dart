@@ -2,11 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
+import 'package:timetable_todo/timetablePage.dart';
+import 'package:timetable_todo/timetableSource/myLecture.dart';
+import 'package:timetable_todo/timetableSource/myTable.dart';
+import 'package:timetable_todo/timetableSource/Detail.dart';
+import 'package:timetable_todo/timetableSource/hourTable.dart';
 
 class CreateDialog extends StatefulWidget {
   @override
   _MyAlertDialogState createState() => _MyAlertDialogState();
 }
+
 
 class _MyAlertDialogState extends State<CreateDialog> {
 
@@ -22,6 +28,10 @@ class _MyAlertDialogState extends State<CreateDialog> {
   String _colorSelect = 'RED';
   int id = 1;
 
+  final TextEditingController subjectsController = TextEditingController();
+  final TextEditingController professorController = TextEditingController();
+  final TextEditingController placeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -36,8 +46,18 @@ class _MyAlertDialogState extends State<CreateDialog> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        TextField(decoration: InputDecoration(labelText: '수업명'), style: TextStyle(fontWeight : FontWeight.bold), keyboardType: TextInputType.text),
-                        TextField(decoration: InputDecoration(labelText: '교수명'), style: TextStyle(fontWeight : FontWeight.bold), keyboardType: TextInputType.text),
+                        TextField(
+                          decoration: InputDecoration(labelText: '수업명'),
+                          style: TextStyle(fontWeight : FontWeight.bold),
+                          keyboardType: TextInputType.text,
+                          controller: subjectsController,
+                        ),
+                        TextField(
+                            decoration: InputDecoration(labelText: '교수명'),
+                            style: TextStyle(fontWeight : FontWeight.bold),
+                            keyboardType: TextInputType.text,
+                          controller: professorController,
+                        ),
                         Row(
                           children: [
                             Text("시간", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
@@ -100,7 +120,12 @@ class _MyAlertDialogState extends State<CreateDialog> {
 
                           ],
                         ),
-                        TextField(decoration: InputDecoration(labelText: '장소'), style: TextStyle(fontWeight : FontWeight.bold), keyboardType: TextInputType.text),
+                        TextField(
+                            decoration: InputDecoration(labelText: '장소'),
+                            style: TextStyle(fontWeight : FontWeight.bold),
+                            keyboardType: TextInputType.text,
+                          controller: placeController,
+                        ),
                         Row(
                           children:[
                             Text('색상', style: TextStyle(fontWeight : FontWeight.bold, color: Colors.black54)),
@@ -227,11 +252,15 @@ class _MyAlertDialogState extends State<CreateDialog> {
               ),
 
               actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold)),
+                  TextButton(
+                    onPressed: () {
+                      myLecture(context, subjectsController.text, professorController.text, "7", 1, 3, placeController.text, 0xffb74093);
+                      Navigator.of(context).pop();
+                      setState((){
+                        
+                      });
+                    },
+                   child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold)),
                 ),
               ],
             );
