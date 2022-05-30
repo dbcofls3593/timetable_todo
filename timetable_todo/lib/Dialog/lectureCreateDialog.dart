@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
@@ -24,13 +24,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.lightGreen,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AlertDialog(
+    return AlertDialog(
               insetPadding: EdgeInsets.all(20),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
               title: Text('수업 추가', style: TextStyle(fontWeight : FontWeight.bold)),
@@ -236,10 +230,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                   child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold)),
                 ),
               ],
-            ),
-          ],
-        ),
-      ),
-    );
+            );
   }
 }
+

@@ -28,7 +28,7 @@ Positioned myLecture(BuildContext context, String subjects, String professor, St
             }
               );
         // Doesn't run
-        Navigator.pop(context);
+        //Navigator.pop(context);
       },
       child: Container(
         //한 칸 기준, h: 50, width: 45
