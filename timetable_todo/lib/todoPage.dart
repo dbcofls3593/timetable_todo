@@ -29,6 +29,7 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -122,9 +123,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
                         ),
                         IconButton(
                           icon: Icon(Icons.delete),
-                          onPressed: (){
-
-                          },
+                          onPressed: () => _removeDialog(),
                         ),
                       ],
                     ),
@@ -162,6 +161,12 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
     _textFieldController.clear();
   }
 
+  void _removeTodoItem() {
+    setState(() {
+      _todos.clear();
+    });
+  }
+
   Future<void> _displayDialog() async {
     return showDialog<void>(
       context: context,
@@ -182,11 +187,39 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
               },
             ),
           ],
-
         );
       },
 
     );
   }
+
+  Future<void> _removeDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('TODO 전체 삭제하기'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('확인'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _removeTodoItem();
+              },
+            ),
+            TextButton(
+              child: const Text('취소'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+
+    );
+  }
+
 }
 
