@@ -252,18 +252,17 @@ class _MyAlertDialogState extends State<CreateDialog> {
               ),
 
               actions: <Widget>[
-                  TextButton(
+                TextButton(
                     onPressed: () {
-                      myLecture(context, subjectsController.text, professorController.text, "7", 1, 3, placeController.text, 0xffb74093);
-                      Navigator.of(context).pop();
-                      setState((){
-                        
+                    Navigator.of(context).pop();
+                      return setState(() {
+                        //myLecture(context, subjectsController.text, professorController.text, "6", 1, 3, placeController.text, 0xffb74093);
                       });
-                    },
-                   child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold)),
-                ),
-              ],
-            );
+                      },
+                      child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
+                    )
+                  ]
+              );
   }
 }
 

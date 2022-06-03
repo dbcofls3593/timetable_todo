@@ -1,14 +1,16 @@
-class Detail{
-  int? color;
-  String? subjects;
-  String? professor;
-  String? days;
-  String? start;
-  String? end;
-  String? place;
-  String? todotext;
+import 'package:flutter/material.dart';
 
-  Detail(int color, String subjects, String professor, String days, String start, String end, String place, String todotext){
+class Detail{
+  Color? color;
+  String subjects='';
+  String professor='';
+  String days='';
+  int start=1;
+  int? end;
+  String place='';
+  //String? todotext;
+
+  Detail(Color color, String subjects, String professor, String days, int start, int end, String place){
     this.color = color;
     this.subjects = subjects;
     this.professor = professor;
@@ -16,13 +18,13 @@ class Detail{
     this.start = start;
     this.end = end;
     this.place = place;
-    this.todotext = todotext;
+    //this.todotext = todotext;
   }
 
   void printdetail(){
     print('Object delivery successful\n');
     print("Object is ${this.color}, ${this.subjects}, ${this.professor}, ${this.days}, ${this.start}, ${this.end}"
-        ", ${this.place}, ${this.todotext}");
+        ", ${this.place}");
   }
 
 }
