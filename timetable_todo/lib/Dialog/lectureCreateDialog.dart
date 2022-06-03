@@ -256,7 +256,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                     onPressed: () {
                     Navigator.of(context).pop();
                       return setState(() {
-                        myLecture(context, subjectsController.text, professorController.text, "6", 1, 3, placeController.text, 0xffb74093);
+                        //myLecture(context, subjectsController.text, professorController.text, "6", 1, 3, placeController.text, 0xffb74093);
                       });
                       },
                       child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))

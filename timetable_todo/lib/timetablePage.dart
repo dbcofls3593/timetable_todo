@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:timetable_todo/timetableSource/Detail.dart';
 import './timetableSource/hourTable.dart';
 import './timetableSource/myTable.dart';
 import './timetableSource/myLecture.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
 import './Dialog/lectureCreateDialog.dart';
+import './todoPage.dart';
+
+class lectureItem{
+
+}
 
 class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
@@ -27,6 +33,8 @@ class _timetablePageState extends State<timetablePage> {
   String _colorSelect = 'RED';
   int id = 1;
 
+
+  final List<Detail> _lectures = <Detail>[];
   final TextEditingController subjectsController = TextEditingController();
   final TextEditingController professorController = TextEditingController();
   final TextEditingController placeController = TextEditingController();
@@ -92,24 +100,27 @@ class _timetablePageState extends State<timetablePage> {
                                 myTable("목", Colors.transparent,
                                     startnum: 0, endnum: 0, subject: ""),
                                 myTable("금", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
+                                     startnum: 0, endnum: 0, subject: ""),
                                 myTable("토", Colors.transparent,
                                     startnum: 0, endnum: 0, subject: ""),
                                 myTable("일", Colors.transparent,
                                     startnum: 0, endnum: 0, subject: ""),
+
                               ],
                             ),
                             // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
 
-                            myLecture(
-                                context,
-                                subjectsController.text,
-                                professorController.text,
-                                _selectedDateValue,
-                                _selectedValue1,
-                                _selectedValue2,
-                                placeController.text,
-                                0xffb74093),
+                            Container(
+                              child: SizedBox(
+                                height: 100,
+                                width: 200,
+                                child: ListView(
+                                  children: _lectures.map((Detail lecture){
+                                    return myLecture(context, lecture);
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -358,12 +369,15 @@ class _timetablePageState extends State<timetablePage> {
               onPressed: () {
                 Navigator.of(context).pop();
                 return setState(() {
-                  //subjectsController.clear();
-                  //professorController.clear();
+                  //Detail lecture1 = new Detail(Colors.lightGreenAccent, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text);
+                  _lectures.add(Detail(Colors.lightGreenAccent, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text));
+                  print('시작교시$_selectedValue1\n종료교시$_selectedValue2');
+                  subjectsController.clear();
+                  professorController.clear();
                   //_selectedDateValue.clear();
                   //_selectedValue1.clear();
                   //_selectedValue2.clear();
-                  //placeController.clear();
+                  placeController.clear();
                 });
               },
               child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
