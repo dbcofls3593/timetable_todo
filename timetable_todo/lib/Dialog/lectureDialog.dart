@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:timetable_todo/timetablePage.dart';
+import 'package:timetable_todo/timetableSource/Detail.dart';
+import 'package:timetable_todo/timetableSource/myLecture.dart';
 
 AlertDialog lectureDialog(BuildContext context){
+  final List<Detail> lectures = <Detail>[];
   return AlertDialog(
     insetPadding: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
@@ -20,7 +23,8 @@ AlertDialog lectureDialog(BuildContext context){
               ),
               Padding(
                 padding: EdgeInsets.only(left: 7),
-                child: Text('UI/UX프로그래밍', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
+                child: Text('과목명', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
+                //child: Text('${lectures(subjects)}', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
               ),
             ],
           ),
@@ -34,9 +38,8 @@ AlertDialog lectureDialog(BuildContext context){
                         context: context,
                         builder: (BuildContext context) => CreateDialog()
                     );
-
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => CreateDialog()));
                   }),
+
               IconButton(
                   icon: Icon(Icons.delete, color: Colors.black45, size: 24),
                   onPressed: ()=> showDialog<String>(
