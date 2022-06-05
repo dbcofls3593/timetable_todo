@@ -36,7 +36,9 @@ AlertDialog lectureDialog(BuildContext context){
                   onPressed: (){
                     showDialog<String>(
                         context: context,
-                        builder: (BuildContext context) => CreateDialog()
+                        //builder: (BuildContext context) => CreateDialog()
+                        builder: (BuildContext context) => Container()
+
                     );
                   }),
 

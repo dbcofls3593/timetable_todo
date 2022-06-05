@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
 import './timetableSource/hourTable.dart';
 import './timetableSource/myTable.dart';
@@ -9,10 +10,10 @@ class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
 
   @override
-  State<timetablePage> createState() => _timetablePageState();
+  State<timetablePage> createState() => timetablePageState();
 }
 
-class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveClientMixin<timetablePage>{
+class timetablePageState extends State<timetablePage> with AutomaticKeepAliveClientMixin<timetablePage>{
   @override
   bool get wantKeepAlive => true;
 
@@ -28,7 +29,7 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
   Color colorname = Color(0xff92AE9F);
   //int _colorSelect = 1;
 
-  final List<Detail> lectures = <Detail>[];
+  final List<Detail> _lectures = <Detail>[];
   final TextEditingController subjectsController = TextEditingController();
   final TextEditingController professorController = TextEditingController();
   final TextEditingController placeController = TextEditingController();
@@ -103,12 +104,13 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
                             ),
                             // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
 
-                            for(int i=0;i<lectures.length;i++)
-                              myLecture(context, lectures[i])
+                            for(int i=0;i<_lectures.length;i++)
+                              myLecture(context, _lectures[i])
 
                           ],
                         ),
                       ),
+                      LectureAddAlertDialog(text: subjectsController.text,),
                     ]
                 ),
               )
@@ -119,15 +121,17 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
         onPressed: () {
           showDialog<String>(
               context: context,
-              builder: (BuildContext context) => LectureAddDialog() // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
+              builder: (BuildContext context) => new CreateDialog(lectures: _lectures,subjectsController: subjectsController, professorController: professorController, placeController: placeController) // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
           );
         },
         child: const Icon(Icons.add,color: Colors.black,size: 30,),
-        shape: RoundedRectangleBorder(side: BorderSide(width: 3,color: Colors.black12),borderRadius: BorderRadius.circular(100)),
+        shape: RoundedRectangleBorder(
+            side: BorderSide(width: 3,color: Colors.black12),
+            borderRadius: BorderRadius.circular(100)
+        ),
       ),
     );
   }
-
   LectureAddDialog(){
     return AlertDialog(
         insetPadding: EdgeInsets.all(20),
@@ -357,7 +361,7 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
               onPressed: () {
                 Navigator.of(context).pop();
                 return setState(() {
-                  lectures.add(Detail(colorname, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text));
+                  _lectures.add(Detail(colorname, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text));
 
                   subjectsController.clear();
                   professorController.clear();
@@ -372,5 +376,20 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
           )
         ]
     );
+  }
+}
+
+class LectureAddAlertDialog extends StatefulWidget {
+  final String text;
+  LectureAddAlertDialog({Key? key, required this.text}) : super(key: key);
+  @override
+  _LectureAddAlertDialogState createState() => _LectureAddAlertDialogState();
+}
+
+class _LectureAddAlertDialogState extends State<LectureAddAlertDialog> {
+  bool checked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.red,height: 100,width: 100,child: Text(widget.text),);
   }
 }
