@@ -8,6 +8,8 @@ import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureDialog.dart';
 import './timetableSource/Detail.dart';
 
+List<Detail> lectures = <Detail>[];
+
 void main() {
   runApp(MyApp());
 }

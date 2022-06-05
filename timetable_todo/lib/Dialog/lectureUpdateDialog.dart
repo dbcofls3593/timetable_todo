@@ -26,7 +26,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
   Color newColorname = Color(0xff92AE9F);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ) {
     return AlertDialog(
         insetPadding: EdgeInsets.all(20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
@@ -257,7 +257,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
                 Navigator.of(context).pop();
 
                 return setState(() {
-                  lectures[0].subjects = newSubjectsController.text;
+                  //lecture.subjects = newSubjectsController.text;
 
                   subjectsController.clear();
                   professorController.clear();

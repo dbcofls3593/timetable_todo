@@ -6,7 +6,7 @@ import 'package:timetable_todo/timetableSource/myLecture.dart';
 import 'lectureUpdateDialog.dart';
 
 
-AlertDialog lectureDialog(BuildContext context){
+AlertDialog lectureDialog(BuildContext context, Detail lecture){
 
   return AlertDialog(
     insetPadding: EdgeInsets.all(20),
@@ -18,14 +18,14 @@ AlertDialog lectureDialog(BuildContext context){
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: lectures[0].color
+                    color: lecture.color
                 ),
                 height: 29,
                 width: 7,
               ),
               Padding(
                 padding: EdgeInsets.only(left: 7),
-                child: Text('${lectures[0].subjects}', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20))
+                child: Text('${lecture.subjects}', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20))
               ),
             ],
           ),
@@ -91,18 +91,17 @@ AlertDialog lectureDialog(BuildContext context){
                 children: [
                   Row(
                     children: [
-                      for(int i = 0; i < lectures.length; i++)
-                        Text('${lectures[i].professor}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45,fontSize: 13)),
+                        Text('${lecture.professor}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black45,fontSize: 13)),
                   ],
                 ),
                   Row(
                       children: [
-                        Text('${lectures[0].days}  ${lectures[0].start}교시 - ${lectures[0].end}교시', style: TextStyle(color: Colors.black45,fontSize: 13)),
+                        Text('${lecture.days}  ${lecture.start}교시 - ${lecture.end}교시', style: TextStyle(color: Colors.black45,fontSize: 13)),
                       ],
                   ),
                   Row(
                     children: [
-                      Text('${lectures[0].place}', style: TextStyle(color: Colors.black45,fontSize: 13)),
+                      Text('${lecture.place}', style: TextStyle(color: Colors.black45,fontSize: 13)),
                     ],
                   )
                 ],

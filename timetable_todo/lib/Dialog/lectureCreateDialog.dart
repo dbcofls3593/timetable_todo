@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
+import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/myLecture.dart';
 import 'package:timetable_todo/timetableSource/myTable.dart';
@@ -9,6 +10,11 @@ import 'package:timetable_todo/timetableSource/Detail.dart';
 import 'package:timetable_todo/timetableSource/hourTable.dart';
 
 class CreateDialog extends StatefulWidget {
+  final TextEditingController subjectsController;
+  final TextEditingController professorController;
+  final TextEditingController placeController;
+  final List<Detail> lectures;
+  CreateDialog({Key? key,required this.lectures, required this.subjectsController,required this.professorController,required this.placeController}) : super(key: key);
   @override
   _MyAlertDialogState createState() => _MyAlertDialogState();
 }
@@ -28,10 +34,6 @@ class _MyAlertDialogState extends State<CreateDialog> {
   String _colorSelect = 'RED';
   int id = 1;
 
-  final TextEditingController subjectsController = TextEditingController();
-  final TextEditingController professorController = TextEditingController();
-  final TextEditingController placeController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -50,13 +52,13 @@ class _MyAlertDialogState extends State<CreateDialog> {
                           decoration: InputDecoration(labelText: '수업명'),
                           style: TextStyle(fontWeight : FontWeight.bold),
                           keyboardType: TextInputType.text,
-                          controller: subjectsController,
+                          controller: widget.subjectsController,
                         ),
                         TextField(
                             decoration: InputDecoration(labelText: '교수명'),
                             style: TextStyle(fontWeight : FontWeight.bold),
                             keyboardType: TextInputType.text,
-                          controller: professorController,
+                          controller: widget.professorController,
                         ),
                         Row(
                           children: [
@@ -124,7 +126,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                             decoration: InputDecoration(labelText: '장소'),
                             style: TextStyle(fontWeight : FontWeight.bold),
                             keyboardType: TextInputType.text,
-                          controller: placeController,
+                          controller: widget.placeController,
                         ),
                         Row(
                           children:[
@@ -254,10 +256,22 @@ class _MyAlertDialogState extends State<CreateDialog> {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                    Navigator.of(context).pop();
-                      return setState(() {
-                        //myLecture(context, subjectsController.text, professorController.text, "6", 1, 3, placeController.text, 0xffb74093);
+                      setState(() {
+                        widget.lectures.add(Detail(Colors.yellow, widget.subjectsController.text, widget.professorController.text, "토요일", 4, 8, widget.placeController.text));
+                        print(widget.lectures);
+                        widget.subjectsController.clear();
+                        widget.professorController.clear();
+                        //_selectedDateValue.clear();
+                        //_selectedValue1.clear();
+                        //_selectedValue2.clear();
+                        widget.placeController.clear();
+
                       });
+                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                      );
                       },
                       child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
                     )

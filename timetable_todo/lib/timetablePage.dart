@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
 import './timetableSource/hourTable.dart';
 import './timetableSource/myTable.dart';
 import './timetableSource/myLecture.dart';
 
-final List<Detail> lectures = <Detail>[];
 final TextEditingController subjectsController = TextEditingController();
 final TextEditingController professorController = TextEditingController();
 final TextEditingController placeController = TextEditingController();
@@ -82,22 +83,14 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                hourTable("", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("월", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("화", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("수", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("목", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("금", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("토", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
-                                myTable("일", Colors.transparent,
-                                    startnum: 0, endnum: 0, subject: ""),
+                                hourTable(),
+                                myTable("월"),
+                                myTable("화"),
+                                myTable("수"),
+                                myTable("목"),
+                                myTable("금"),
+                                myTable("토"),
+                                myTable("일"),
                               ],
                             ),
                             // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
@@ -118,7 +111,7 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
         onPressed: () {
           showDialog<String>(
               context: context,
-              builder: (BuildContext context) => LectureAddDialog() // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
+              builder: (BuildContext context) =>  CreateDialog(lectures: lectures,subjectsController: subjectsController, professorController: professorController, placeController: placeController) // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
           );
         },
         child: const Icon(Icons.add,color: Colors.black,size: 30,),
