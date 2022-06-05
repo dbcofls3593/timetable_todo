@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
+import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/myLecture.dart';
 import 'package:timetable_todo/timetableSource/myTable.dart';
@@ -38,7 +39,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
 
   @override
   Widget build(BuildContext context) {
-    //timetablePageState? parent = context.findAncestorStateOfType<timetablePageState>();
+    timetablePageState? parent = context.findAncestorStateOfType<timetablePageState>();
 
     return AlertDialog(
         insetPadding: EdgeInsets.all(20),
@@ -158,10 +159,9 @@ class _MyAlertDialogState extends State<CreateDialog> {
         actions: <Widget>[
           TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                return setState(() {
-                  widget.lectures.add(Detail(Colors.yellow, widget.subjectsController.text, widget.professorController.text, "목요일", 4, 8, widget.placeController.text));
-
+                setState(() {
+                  widget.lectures.add(Detail(Colors.yellow, widget.subjectsController.text, widget.professorController.text, "수요일", 4, 8, widget.placeController.text));
+                  print(widget.lectures);
                   widget.subjectsController.clear();
                   widget.professorController.clear();
                   //_selectedDateValue.clear();
@@ -170,24 +170,16 @@ class _MyAlertDialogState extends State<CreateDialog> {
                   widget.placeController.clear();
 
                 });
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                );
               },
               child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
           )
         ]
     );
   }
-  setList(){
-    setState(() {
-      widget.lectures.add(Detail(Colors.yellow, widget.subjectsController.text, widget.professorController.text, "화요일", 4, 8, widget.placeController.text));
-
-      widget.subjectsController.clear();
-      widget.professorController.clear();
-      //_selectedDateValue.clear();
-      //_selectedValue1.clear();
-      //_selectedValue2.clear();
-      widget.placeController.clear();
-
-    });
-        }
 }
 

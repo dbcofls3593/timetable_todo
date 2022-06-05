@@ -23,7 +23,7 @@ AlertDialog lectureDialog(BuildContext context){
               ),
               Padding(
                 padding: EdgeInsets.only(left: 7),
-                child: Text('과목명', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
+                child: Text("sub", style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
                 //child: Text('${lectures(subjects)}', style: TextStyle(fontWeight : FontWeight.bold, fontSize: 20)),
               ),
             ],

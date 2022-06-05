@@ -5,6 +5,7 @@ import 'package:timetable_todo/timetableSource/Detail.dart';
 import './timetableSource/hourTable.dart';
 import './timetableSource/myTable.dart';
 import './timetableSource/myLecture.dart';
+import 'main.dart';
 
 class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class timetablePageState extends State<timetablePage> with AutomaticKeepAliveCli
   Color colorname = Color(0xff92AE9F);
   //int _colorSelect = 1;
 
-  final List<Detail> _lectures = <Detail>[];
+
   final TextEditingController subjectsController = TextEditingController();
   final TextEditingController professorController = TextEditingController();
   final TextEditingController placeController = TextEditingController();
@@ -104,8 +105,8 @@ class timetablePageState extends State<timetablePage> with AutomaticKeepAliveCli
                             ),
                             // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
 
-                            for(int i=0;i<_lectures.length;i++)
-                              myLecture(context, _lectures[i])
+                            for(int i=0;i<lectures.length;i++)
+                              myLecture(context, lectures[i])
 
                           ],
                         ),
@@ -121,7 +122,7 @@ class timetablePageState extends State<timetablePage> with AutomaticKeepAliveCli
         onPressed: () {
           showDialog<String>(
               context: context,
-              builder: (BuildContext context) => new CreateDialog(lectures: _lectures,subjectsController: subjectsController, professorController: professorController, placeController: placeController) // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
+              builder: (BuildContext context) =>  CreateDialog(lectures: lectures,subjectsController: subjectsController, professorController: professorController, placeController: placeController) // 플로팅 버튼을 터치했을 때, 수업 추가(addDialog()) 다이얼로그를 보여줌
           );
         },
         child: const Icon(Icons.add,color: Colors.black,size: 30,),
@@ -361,7 +362,7 @@ class timetablePageState extends State<timetablePage> with AutomaticKeepAliveCli
               onPressed: () {
                 Navigator.of(context).pop();
                 return setState(() {
-                  _lectures.add(Detail(colorname, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text));
+                  lectures.add(Detail(colorname, subjectsController.text, professorController.text, _selectedDateValue, _selectedValue1, _selectedValue2, placeController.text));
 
                   subjectsController.clear();
                   professorController.clear();
