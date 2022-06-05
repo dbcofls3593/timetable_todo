@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
 import 'package:timetable_todo/timetableSource/myLecture.dart';
@@ -67,13 +68,24 @@ AlertDialog lectureDialog(BuildContext context, Detail lecture){
                         ),
                         TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              lecture.subjects ="";
+                              lecture.professor="";
+                              lecture.days="";
+                              lecture.start=0;
+                              lecture.end=0;
+                              lecture.place="";
+                              lecture.color=null;
+                              Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                              );
                             },
                             child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
                         ),
                       ],
                     )
-                  )),
+                  ))
             ],
           ),
         ]
