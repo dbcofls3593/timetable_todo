@@ -10,6 +10,7 @@ class Detail{
   String place='';
   //String? todotext;
 
+
   Detail(Color color, String subjects, String professor, String days, int start, int end, String place){
     this.color = color;
     this.subjects = subjects;
