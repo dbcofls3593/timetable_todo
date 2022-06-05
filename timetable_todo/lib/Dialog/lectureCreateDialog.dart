@@ -10,11 +10,16 @@ import 'package:timetable_todo/timetableSource/Detail.dart';
 import 'package:timetable_todo/timetableSource/hourTable.dart';
 
 class CreateDialog extends StatefulWidget {
+  final List<Detail> lectures;
   final TextEditingController subjectsController;
   final TextEditingController professorController;
   final TextEditingController placeController;
-  final List<Detail> lectures;
-  CreateDialog({Key? key,required this.lectures, required this.subjectsController,required this.professorController,required this.placeController}) : super(key: key);
+  int selectedValue1 = 1;
+  int selectedValue2 = 1;
+  String selectedDateValue = '월요일';
+  Color newColorname=Color(0xff92AE9F);
+
+  CreateDialog({Key? key,required this.lectures, required this.subjectsController,required this.professorController,required this.placeController,required this.selectedDateValue,required this.selectedValue1,required this.selectedValue2,required this.newColorname}) : super(key: key);
   @override
   _MyAlertDialogState createState() => _MyAlertDialogState();
 }
@@ -23,17 +28,14 @@ class CreateDialog extends StatefulWidget {
 class _MyAlertDialogState extends State<CreateDialog> {
 
   final List<int> _startList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  int _selectedValue1 = 1;
+
 
   final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  int _selectedValue2 = 1;
+
 
   final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
-  String _selectedDateValue = '월요일';
 
-  String _colorSelect = 'RED';
-  int id = 1;
-
+   int id=1;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -71,7 +73,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                   child: DropdownButton<String>(
-                                    value: _selectedDateValue,
+                                    value: widget.selectedDateValue,
                                     items: _dateList.map((days){
                                       return DropdownMenuItem(
                                         value: days,
@@ -80,7 +82,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                                     }).toList(),
                                     onChanged: (dynamic days){
                                       setState((){
-                                        _selectedDateValue = days;
+                                        widget.selectedDateValue = days;
                                       });
                                     },
                                   )
@@ -88,7 +90,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                             ),
                             Container(
                                 child: DropdownButton<int>(
-                                  value: _selectedValue1,
+                                  value: widget.selectedValue1,
                                   items: _startList.map((startclass){
                                         return DropdownMenuItem(
                                           value: startclass,
@@ -97,7 +99,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                                       }).toList(),
                                       onChanged: (dynamic startclass){
                                       setState((){
-                                        _selectedValue1 = startclass;
+                                        widget.selectedValue1 = startclass;
                                     });
                                   },
                                 )
@@ -105,7 +107,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                             Text(" 부터 "),
                             Container(
                                 child: DropdownButton<int>(
-                                  value: _selectedValue2,
+                                  value: widget.selectedValue2,
                                   items: _endList.map((endclass){
                                     return DropdownMenuItem(
                                       value: endclass,
@@ -114,7 +116,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                                   }).toList(),
                                   onChanged: (dynamic endclass){
                                     setState((){
-                                      _selectedValue2 = endclass;
+                                      widget.selectedValue2 = endclass;
                                     });
                                   },
                                 )
@@ -134,119 +136,123 @@ class _MyAlertDialogState extends State<CreateDialog> {
                           ],
                         ),
                         Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Radio(
-                                  value: 1,
-                                  groupValue: id,
-                                  fillColor : MaterialStateColor.resolveWith((states) => Colors.orangeAccent),
-                                  onChanged: (val){
-                                    setState((){
-                                      _colorSelect = 'RED';
-                                      id = 1;
-                                    });
-                                  }),
-                              Radio(
-                                  value: 2,
-                                  groupValue: id,
-                                  fillColor : MaterialStateColor.resolveWith((states) => Colors.lime),
-                                  onChanged: (val){
-                                    setState((){
-                                      _colorSelect = 'BLUE';
-                                      id = 2;
-                                    });
-                                  }),
-                              Radio(
-                                  value: 3,
-                                  groupValue: id,
-                                  fillColor : MaterialStateColor.resolveWith((states) => Colors.blueGrey),
-                                  onChanged: (val){
-                                    setState((){
-                                      _colorSelect = 'GREEN';
-                                      id = 3;
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ),
-                        Column(
+                          child: Column(
+                        children: [
+                        Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Radio(
-                                    value: 4,
-                                    groupValue: id,
-                                    fillColor : MaterialStateColor.resolveWith((states) => Colors.indigo),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'YELLOW';
-                                        id = 4;
-                                      });
-                                    }),
-                                Radio(
-                                    value: 5,
-                                    groupValue: id,
-                                    fillColor : MaterialStateColor.resolveWith((states) => Colors.brown),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'LIME';
-                                        id = 5;
-                                      });
-                                    }),
-                                Radio(
-                                    value: 6,
-                                    groupValue: id,
-                                    fillColor: MaterialStateColor.resolveWith((states) => Colors.purpleAccent),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'GREY';
-                                        id = 6;
-                                      });
-                                    }),
-                              ],
-                            )
+                            Radio(
+                                value: 1,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffFD9D9D)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffFD9D9D);
+                                    id=1;
+                                  });
+                                }),
+                            Radio(
+                                value: 2,
+//groupValue: _colorSelect,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffD5EFD0)),
+                                onChanged: (val){
+                                  setState((){
+//_colorSelect = 2;
+                                    widget.newColorname= Color(0xffD5EFD0);
+                                    id = 2;
+                                  });
+                                }),
+                            Radio(
+                                value: 3,
+                                groupValue: id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffA2DBD1)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffA2DBD1);
+                                    id = 3;
+                                  });
+                                }),
+                            Radio(
+                                value: 4,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffEBB889)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffEBB889);
+                                    id = 4;
+                                  });
+                                }),
+                            Radio(
+                                value: 5,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xff92AE9F)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xff92AE9F);
+                                    id = 5;
+                                  });
+                                }),
                           ],
                         ),
-                        Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Radio(
-                                    value: 7,
-                                    groupValue: id,
-                                    fillColor : MaterialStateColor.resolveWith((states) => Colors.lightBlueAccent),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'GREY1';
-                                        id = 7;
-                                      });
-                                    }),
-                                Radio(
-                                    value: 8,
-                                    groupValue: id,
-                                    fillColor : MaterialStateColor.resolveWith((states) => Colors.cyan),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'GREY2';
-                                        id = 8;
-                                      });
-                                    }),
-                                Radio(
-                                    value: 9,
-                                    groupValue: id,
-                                    fillColor : MaterialStateColor.resolveWith((states) => Colors.lightGreenAccent),
-                                    onChanged: (val){
-                                      setState((){
-                                        _colorSelect = 'GREY3';
-                                        id = 9;
-                                      });
-                                    }),
-                              ],
-                            )
+                            Radio(
+                                value: 6,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffB1CEFB)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffB1CEFB);
+                                    id = 6;
+                                  });
+                                }),
+                            Radio(
+                                value: 7,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffDAB1FB)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffDAB1FB);
+                                    id = 7;
+                                  });
+                                }),
+                            Radio(
+                                value: 8,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffB1E9FB)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffB1E9FB);
+                                    id = 8;
+                                  });
+                                }),
+                            Radio(
+                                value: 9,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffffcc00)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffffcc00);
+                                    id = 9;
+                                  });
+                                }),
+                            Radio(
+                                value: 10,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xff7fc638)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xff7fc638);
+                                    id = 10;
+                                  });
+                                }),
                           ],
+                        )
+
+                      ],
+                    ),
                         )
                       ],
                     )
@@ -257,7 +263,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                 TextButton(
                     onPressed: () {
                       setState(() {
-                        widget.lectures.add(Detail(Colors.yellow, widget.subjectsController.text, widget.professorController.text, "토요일", 4, 8, widget.placeController.text));
+                        widget.lectures.add(Detail(widget.newColorname, widget.subjectsController.text, widget.professorController.text, widget.selectedDateValue, widget.selectedValue1, widget.selectedValue2, widget.placeController.text));
                         print(widget.lectures);
                         widget.subjectsController.clear();
                         widget.professorController.clear();
