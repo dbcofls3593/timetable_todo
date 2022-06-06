@@ -19,7 +19,7 @@ class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
 
   @override
-  State<timetablePage> createState() => _timetablePageState();
+  State<timetablePage> createState() => _timetablePageState(); // 위젯의 생명주기
 }
 
 class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveClientMixin<timetablePage>{
@@ -29,20 +29,20 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70.0),
+    return Scaffold( // 앱의 뼈대가 되는 Scaffold 위젯
+      appBar: PreferredSize( // 앱바를 자식의 레이아웃에 어떠한 영향도 끼치지 않으면서 부모에 의해 사용될 기본 크기를 가지기 위해 PreferredSize 위젯 사용
+        preferredSize: const Size.fromHeight(70.0), // 앱바의 높이를 70으로 지정
         child: AppBar(
-          automaticallyImplyLeading: false,
-          flexibleSpace: Container(),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+          automaticallyImplyLeading: false, // 이전 화면으로 돌아가는 버튼을 false
+          flexibleSpace: Container(), // flexibleSpace에 Container를 추가
+          title: Padding( // 앱바의 Padding
+            padding: const EdgeInsets.only(left: 10.0), // left를 기준으로 10만큼 padding
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(height: 10),
-                const Text('시간표',
+              mainAxisAlignment: MainAxisAlignment.center, // 앱바를 중심선에 정렬하기 위해 사용
+              crossAxisAlignment: CrossAxisAlignment.start, // 앱바를 세로축을 기준으로 왼쪽 정렬하기 위해 사용
+              children: [ // 여러 위젯을 사용하기 위한 children
+                Container(height: 10), // 앱바의 높이를 10으로 지정
+                const Text('시간표', // 앱바에 시간표를 출력하며, 텍스트의 색상을 검정, bold체, 크기를 23으로 지정
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -51,45 +51,44 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
               ],
             ),
           ),
-          backgroundColor: Colors.white,
-          elevation: 0.3,
+          backgroundColor: Colors.white, // 앱바의 backgroundColor를 흰색으로 지정
+          elevation: 0.3, // 앱바의 그림자 효과를 0.3 크기로 지정
         ),
       ),
-      backgroundColor: Colors.white,
-      body: SafeArea(
-          child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
+      backgroundColor: Colors.white, // 앱의 backgroundColor 흰색으로 지정
+      body: SafeArea( // 앱의 UI를 기기별로 깔끔하게 보여지기 위해 SafeArea 위젯을 사용
+          child: SingleChildScrollView( // 화면이 짤리는 것을 방지하기 위하여 스크롤을 가능하게 해주기 위하여 사용
+              scrollDirection: Axis.vertical, // scrollDirection을 주축을 기준으로 수직으로 나열하기 위하여 사용
+              child: Center( // 자식에서 사용될 열을 중앙배치하기 위하여 사용
+                child: Column( // timetable을 열로 배치
+                    mainAxisAlignment: MainAxisAlignment.center, // timetable을 세로축을 기준으로 가운데 정렬하기 위하여 사용
+                    crossAxisAlignment: CrossAxisAlignment.center, // timetable을 세로축을 기준으로 가운데 정렬하기 위하여 사용
+                    children: [ // 여러 위젯을 사용하기 위한 children
+                      Container( // timetable 박스를 Container 위젯으로 만들어주고, 너비를 400, 왼쪽 15, 위 30, 오른쪽 15, 밑 5로 margin, Container의 색상을 gray.shade300, Container 가장자리에 크기 10만큼 원을 그려줌
                         width: 400,
                         margin: EdgeInsets.fromLTRB(15, 30, 15, 5),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey.shade300),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: Stack(
-                          children: [
+                        child: Stack( // Stack 위젯을 이용하여 수업을 넣어줘서 위치를 지정해줌.
+                          children: [ // 여러 위젯을 사용하기 위한 children
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                hourTable(),
-                                myTable("월"),
-                                myTable("화"),
-                                myTable("수"),
-                                myTable("목"),
-                                myTable("금"),
-                                myTable("토"),
-                                myTable("일"),
+                              crossAxisAlignment: CrossAxisAlignment.center, // timetable을 세로축을 기준으로 가운데 정렬하기 위하여 사용
+                              mainAxisAlignment: MainAxisAlignment.center, // timetalbe을 세로축을 기준으로 가운데 정렬하기 위하여 사용
+                              children: [ // 여러개의 위젯을 사용하기 위하여 children 사용
+                                hourTable(), // hourTable 위젯 함수를 호출하여 교시 열을 만들어줌.
+                                myTable("월"), // myTable 위젯 함수를 호출하여 월요일 열을 만들어줌.
+                                myTable("화"), // myTable 위젯 함수를 호출하여 화요일 열을 만들어줌.
+                                myTable("수"), // myTable 위젯 함수를 호출하여 수요일 열을 만들어줌.
+                                myTable("목"), // myTable 위젯 함수를 호출하여 목요일 열을 만들어줌.
+                                myTable("금"), // myTable 위젯 함수를 호출하여 금요일 열을 만들어줌.
+                                myTable("토"), // myTable 위젯 함수를 호출하여 토요일 열을 만들어줌.
+                                myTable("일"), // myTable 위젯 함수를 호출하여 일요일 열을 만들어줌.
                               ],
                             ),
-                            // 강의명, 교수명, 요일, 시작교시, 마지막교시, 장소, 색상
 
-                            for(int i=0;i<lectures.length;i++)
+                            for(int i=0;i<lectures.length;i++) // 수업을 여러개 만들기 위하여 반복문을 이용하여 lectures의 길이만큼 myLecture 함수 호출
                               myLecture(context, lectures[i])
 
                           ],
