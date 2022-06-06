@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
+import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
 import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
@@ -13,7 +14,7 @@ class LectureDialog extends StatefulWidget {
   @override
   State<LectureDialog> createState() => _LectureDialogState();
 }
-
+Color colorName = Color(0xffFD9D9D);
 class _LectureDialogState extends State<LectureDialog> {
   final TextEditingController _textFieldController = TextEditingController();
   @override
@@ -53,7 +54,7 @@ class _LectureDialogState extends State<LectureDialog> {
                     onPressed: () {
                       showDialog<String>(
                           context: context,
-                          builder: (BuildContext context) => UpdateLecture()
+                          builder: (BuildContext context) => UpdateDialog(lecture: widget.lecture, subjectsController: subjectsController, professorController: professorController, placeController: placeController, selectedDateValue: selectedDateValue, selectedValue1: selectedValue1, selectedValue2: selectedValue2, newColorname: colorName)
                       );
                     }),
 

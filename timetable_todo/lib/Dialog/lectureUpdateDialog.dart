@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
 import 'package:timetable_todo/Dialog/lectureDialog.dart';
+import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/myLecture.dart';
+import 'package:timetable_todo/timetableSource/Detail.dart';
 
-class UpdateLecture extends StatefulWidget {
+class UpdateDialog extends StatefulWidget {
+  // final List<Detail> lectures;
+  final Detail lecture;
+  final TextEditingController subjectsController;
+  final TextEditingController professorController;
+  final TextEditingController placeController;
+  int selectedValue1 = 1;
+  int selectedValue2 = 1;
+  String selectedDateValue = '월요일';
+  Color newColorname = Color(0xffFD9D9D);
+
+  UpdateDialog({Key? key,required this.lecture, required this.subjectsController,required this.professorController,required this.placeController,required this.selectedDateValue,required this.selectedValue1,required this.selectedValue2,required this.newColorname}) : super(key: key);
   @override
-  State<UpdateLecture> createState() => _UpdateLectureState();
+  _MyAlertDialogState createState() => _MyAlertDialogState();
 }
 
-class _UpdateLectureState extends State<UpdateLecture> {
-  final TextEditingController newSubjectsController = TextEditingController();
-  final TextEditingController newProfessorController = TextEditingController();
-  final TextEditingController newPlaceController = TextEditingController();
 
-  final List<int> _newStartList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  int _newSelectedValue1 = 1;
+class _MyAlertDialogState extends State<UpdateDialog> {
 
-  final List<int> _newEndList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  int _newSelectedValue2 = 1;
+  final List<int> _startList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  final List<String> _newDateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
-  String _newSelectedDateValue = '월요일';
 
-  Color newColorname = Color(0xff92AE9F);
+  final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+
+  final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+
+  int id=1;
   @override
-  Widget build(BuildContext context, ) {
+  Widget build(BuildContext context) {
     return AlertDialog(
         insetPadding: EdgeInsets.all(20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
@@ -43,13 +52,13 @@ class _UpdateLectureState extends State<UpdateLecture> {
                     decoration: InputDecoration(labelText: '수업명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
-                    controller: newSubjectsController,
+                    controller: widget.subjectsController,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: '교수명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
-                    controller: newProfessorController,
+                    controller: widget.professorController,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
@@ -65,8 +74,8 @@ class _UpdateLectureState extends State<UpdateLecture> {
                         padding: const EdgeInsets.only(right: 12.0),
                         child: Container(
                             child: DropdownButton<String>(
-                              value: _newSelectedDateValue,
-                              items: _newDateList.map((days){
+                              value: widget.selectedDateValue,
+                              items: _dateList.map((days){
                                 return DropdownMenuItem(
                                   value: days,
                                   child: Text(days),
@@ -74,7 +83,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
                               }).toList(),
                               onChanged: (dynamic days){
                                 setState((){
-                                  _newSelectedDateValue = days;
+                                  widget.selectedDateValue = days;
                                 });
                               },
                             )
@@ -84,8 +93,8 @@ class _UpdateLectureState extends State<UpdateLecture> {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 2.0),
                             child: DropdownButton<int>(
-                              value: _newSelectedValue1,
-                              items: _newStartList.map((startclass){
+                              value: widget.selectedValue1,
+                              items: _startList.map((startclass){
                                 return DropdownMenuItem(
                                   value: startclass,
                                   child: Text('$startclass교시'),
@@ -93,7 +102,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
                               }).toList(),
                               onChanged: (dynamic startclass){
                                 setState((){
-                                  _newSelectedValue1 = startclass;
+                                  widget.selectedValue1 = startclass;
                                 });
                               },
                             ),
@@ -104,8 +113,8 @@ class _UpdateLectureState extends State<UpdateLecture> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 2.0),
                             child: DropdownButton<int>(
-                              value: _newSelectedValue2,
-                              items: _newEndList.map((endclass){
+                              value: widget.selectedValue2,
+                              items: _endList.map((endclass){
                                 return DropdownMenuItem(
                                   value: endclass,
                                   child: Text('$endclass교시'),
@@ -113,7 +122,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
                               }).toList(),
                               onChanged: (dynamic endclass){
                                 setState((){
-                                  _newSelectedValue2 = endclass;
+                                  widget.selectedValue2 = endclass;
                                 });
                               },
                             ),
@@ -126,7 +135,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
                     decoration: InputDecoration(labelText: '장소'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
-                    controller: newPlaceController,
+                    controller: widget.placeController,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
@@ -143,50 +152,54 @@ class _UpdateLectureState extends State<UpdateLecture> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
-                                value: 1,
-                                groupValue: newColorname,
+                                value: 1, //groupValue: _colorSelect,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xffFD9D9D)),
                                 onChanged: (val){
-                                  setState((){
-                                    newColorname = Color(0xffFD9D9D);
+                                  setState((){ //_colorSelect = 2;
+                                    widget.newColorname= Color(0xffFD9D9D);
+                                    id = 1;
                                   });
                                 }),
                             Radio(
-                                value: 2,
-                                //groupValue: _colorSelect,
-                                groupValue: newColorname,
+                                value: 2, //groupValue: _colorSelect,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xffD5EFD0)),
                                 onChanged: (val){
                                   setState((){
                                     //_colorSelect = 2;
-                                    newColorname = Color(0xffD5EFD0);
+                                    widget.newColorname= Color(0xffD5EFD0);
+                                    id = 2;
                                   });
                                 }),
                             Radio(
                                 value: 3,
-                                groupValue: newColorname,
+                                groupValue: id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xffA2DBD1)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xffA2DBD1);
+                                    widget.newColorname= Color(0xffA2DBD1);
+                                    id = 3;
                                   });
                                 }),
                             Radio(
                                 value: 4,
-                                groupValue: newColorname,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xffEBB889)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xffEBB889);
+                                    widget.newColorname= Color(0xffEBB889);
+                                    id = 4;
                                   });
                                 }),
                             Radio(
                                 value: 5,
-                                groupValue: newColorname,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xff92AE9F)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xff92AE9F);
+                                    widget.newColorname= Color(0xff92AE9F);
+                                    id = 5;
                                   });
                                 }),
                           ],
@@ -195,48 +208,53 @@ class _UpdateLectureState extends State<UpdateLecture> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
-                                value: 7,
-                                groupValue: newColorname,
+                                value: 6,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xffB1CEFB)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xffB1CEFB);
+                                    widget.newColorname= Color(0xffB1CEFB);
+                                    id = 6;
+                                  });
+                                }),
+                            Radio(
+                                value: 7,
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffDAB1FB)),
+                                onChanged: (val){
+                                  setState((){
+                                    widget.newColorname= Color(0xffDAB1FB);
+                                    id = 7;
                                   });
                                 }),
                             Radio(
                                 value: 8,
-                                groupValue: newColorname,
-                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffDAB1FB)),
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffB1E9FB)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xffDAB1FB);
+                                    widget.newColorname= Color(0xffB1E9FB);
+                                    id = 8;
                                   });
                                 }),
                             Radio(
                                 value: 9,
-                                groupValue: newColorname,
-                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffB1E9FB)),
+                                groupValue:id,
+                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffffcc00)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xffB1E9FB);
+                                    widget.newColorname= Color(0xffffcc00);
+                                    id = 9;
                                   });
                                 }),
                             Radio(
                                 value: 10,
-                                groupValue: newColorname,
-                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffffcc00)),
-                                onChanged: (val){
-                                  setState((){
-                                    newColorname = Color(0xffffcc00);
-                                  });
-                                }),
-                            Radio(
-                                value: 11,
-                                groupValue: newColorname,
+                                groupValue:id,
                                 fillColor : MaterialStateColor.resolveWith((states) => Color(0xff7fc638)),
                                 onChanged: (val){
                                   setState((){
-                                    newColorname = Color(0xff7fc638);
+                                    widget.newColorname= Color(0xff7fc638);
+                                    id = 10;
                                   });
                                 }),
                           ],
@@ -244,7 +262,7 @@ class _UpdateLectureState extends State<UpdateLecture> {
 
                       ],
                     ),
-                  ),
+                  )
                 ],
               )
           ),
@@ -253,26 +271,31 @@ class _UpdateLectureState extends State<UpdateLecture> {
         actions: <Widget>[
           TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                setState(() {
+                  // widget.lectures.clear();
+                  widget.lecture.color = widget.newColorname;
+                  widget.lecture.subjects = widget.subjectsController.text;
+                  widget.lecture.days = widget.selectedDateValue;
+                  widget.lecture.start = widget.selectedValue1;
+                  widget.lecture.end = widget.selectedValue2;
+                  widget.lecture.place = widget.placeController.text;
 
-                return setState(() {
-                  //lecture.subjects = newSubjectsController.text;
-
-                  subjectsController.clear();
-                  professorController.clear();
-                  //_selectedDateValue.clear();
-                  //_selectedValue1.clear();
-                  //_selectedValue2.clear();
-                  placeController.clear();
+                  // widget.lectures.add(Detail(widget.newColorname, widget.subjectsController.text, widget.professorController.text, widget.selectedDateValue, widget.selectedValue1, widget.selectedValue2, widget.placeController.text));
+                  // print(widget.lectures);
+                  widget.subjectsController.clear();
+                  widget.professorController.clear();
+                  widget.placeController.clear();
 
                 });
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                );
               },
               child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
           )
         ]
     );
   }
-
-
 }
