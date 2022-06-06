@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/timetablePage.dart';
+import 'package:timetable_todo/todoItem.dart';
 import 'package:timetable_todo/todoPage.dart';
 import 'package:timetable_todo/developerPage.dart';
 import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
@@ -8,7 +9,7 @@ import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
 import 'package:timetable_todo/Dialog/lectureDialog.dart';
 import './timetableSource/Detail.dart';
 
-List<Detail> lectures = <Detail>[];
+List<Detail> lectures = <Detail>[Detail(Colors.yellow,'','','',0,1,'',[Todo(name: 'name', checked: false),Todo(name: 'name1', checked: false)])];
 
 void main() {
   runApp(MyApp());

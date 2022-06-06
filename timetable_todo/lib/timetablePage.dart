@@ -88,7 +88,7 @@ class _timetablePageState extends State<timetablePage> with AutomaticKeepAliveCl
                               ],
                             ),
 
-                            for(int i=0;i<lectures.length;i++) // 수업을 여러개 만들기 위하여 반복문을 이용하여 lectures의 길이만큼 myLecture 함수 호출
+                            for(int i=1;i<lectures.length;i++) // 수업을 여러개 만들기 위하여 반복문을 이용하여 lectures의 길이만큼 myLecture 함수 호출
                               myLecture(context, lectures[i])
 
                           ],

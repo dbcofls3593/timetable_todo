@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:timetable_todo/main.dart';
 import './todoItem.dart';
 
 class TodoList extends StatefulWidget {
   @override
   _TodoListState createState() => new _TodoListState();
 }
-
+List<Todo> _todos = <Todo>[];
 class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<TodoList>{
 
   final TextEditingController _textFieldController = TextEditingController();
-  final List<Todo> _todos = <Todo>[];
+
 
   @override
   bool get wantKeepAlive => true;
@@ -80,12 +81,14 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                  children: _todos.map((Todo todo) {
+                  children:
+                  lectures[1].lectureTodos.map((Todo todo) {
                     return TodoItem(
                       todo: todo,
                       onTodoChanged: _handleTodoChange,
                     );
                   }).toList(),
+
                 ),
               ),
             ],
@@ -103,14 +106,14 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
 
   void _addTodoItem(String name) {
     setState(() {
-      _todos.add(Todo(name: name, checked: false));
+      lectures[0].lectureTodos.add(Todo(name: name, checked: false));
     });
     _textFieldController.clear();
   }
 
   void _removeTodoItem() {
     setState(() {
-      _todos.clear();
+      lectures[1].lectureTodos.clear();
     });
   }
 

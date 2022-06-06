@@ -12,16 +12,9 @@ class Detail{
   List<Todo> lectureTodos = <Todo>[]; // 과목의 Todo list를 받기 위한 lectureTodos 리스트
 
   // 객체 값을 전달 받기 위한 Detail 클래스의 생성자, 매개변수로 색상, 과목명, 교수명, 요일, 시작 교시, 마지막 교시, 장소를 받음
-  Detail(Color color, String subjects, String professor, String days, int start, int end, String place){
-    this.color = color;
-    this.subjects = subjects;
-    this.professor = professor;
-    this.days = days;
-    this.start = start;
-    this.end = end;
-    this.place = place;
-    //this.todotext = todotext;
-  }
+  Detail(this.color, this.subjects, this.professor, this.days, this.start,
+      this.end, this.place, this.lectureTodos);
+
   // 객체가 제대로 전달됐는지 확인하기 위한 printdetail() 함수
   void printdetail(){
     print('Object delivery successful\n');

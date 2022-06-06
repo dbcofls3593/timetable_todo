@@ -268,7 +268,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                 TextButton(
                     onPressed: () {
                       setState(() { //버튼을 눌렀을 때 값이 객체 안으로 들어가며 상태가 설정됨.
-                        widget.lectures.add(Detail(widget.newColorname, widget.subjectsController.text, widget.professorController.text, widget.selectedDateValue, widget.selectedValue1, widget.selectedValue2, widget.placeController.text));
+                        widget.lectures.add(Detail(widget.newColorname, widget.subjectsController.text, widget.professorController.text, widget.selectedDateValue, widget.selectedValue1, widget.selectedValue2, widget.placeController.text,[]));
                         print(widget.lectures);
                         widget.subjectsController.clear();
                         widget.professorController.clear();
