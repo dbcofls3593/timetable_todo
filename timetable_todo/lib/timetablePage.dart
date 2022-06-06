@@ -13,7 +13,7 @@ final TextEditingController placeController = TextEditingController();
 int selectedValue1 = 1;
 int selectedValue2 = 1;
 String selectedDateValue = '월요일';
-Color colorName = Color(0xff92AE9F);
+Color colorName = Color(0xffFD9D9D);
 
 class timetablePage extends StatefulWidget {
   const timetablePage({Key? key}) : super(key: key);
