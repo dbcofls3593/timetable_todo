@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timetable_todo/todoItem.dart';
 
 class Detail{
   Color? color;
@@ -8,7 +9,7 @@ class Detail{
   int start=1;
   int? end;
   String place='';
-  //String? todotext;
+  List<Todo> lectureTodos = <Todo>[];
 
 
   Detail(Color color, String subjects, String professor, String days, int start, int end, String place){

@@ -35,7 +35,7 @@ Positioned myLecture(BuildContext context, Detail lecture){
         await showDialog(
             context: context,
             builder: (context){
-              return lectureDialog(context,lecture);
+              return LectureDialog(lecture: lecture);
             }
           );
       },
