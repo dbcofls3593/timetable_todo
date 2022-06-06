@@ -12,8 +12,6 @@ class developerPage extends StatefulWidget{
 
 class _developerPage extends State<developerPage>{
 
-
-
   Widget build(BuildContext context){
     final size =MediaQuery.of(context).size;
     final width =size.width;
@@ -31,7 +29,7 @@ class _developerPage extends State<developerPage>{
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(height: 10),
+                Container(height: 10), //title에 해당하는 내용을 갖고 있음.
                 Text('개발자 김유정 고2',
                   style: TextStyle(
                       color: Colors.black,
@@ -45,12 +43,12 @@ class _developerPage extends State<developerPage>{
           elevation: 0.3,
         ),
       ),
-      body: Container(
+      body: Container( //개발자의 모든 정보를 담고 있는 Container
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Container(
+              Container( //개발자의 정보를 담은 Container
                   width: width* 1,
                   height: height* 0.17,
                   decoration: BoxDecoration(
@@ -58,11 +56,11 @@ class _developerPage extends State<developerPage>{
                   ),
                   child: Row(
                       children:<Widget>[
-                        Container(
+                        Container( //대표 이미지를 담은 Container
                             width:135,
                             child: Image.asset('image/다은 미모티콘.png')
                         ),
-                        Container(
+                        Container( //이름, 학번, e-mail 관련 정보를 담은 Container
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -99,7 +97,7 @@ class _developerPage extends State<developerPage>{
                       ]
                   )
               ),
-              Container(
+              Container( //개발자의 모든 정보를 담고 있는 Container
                   width: width* 1,
                   height: height* 0.17,
                   decoration: BoxDecoration(
@@ -107,11 +105,11 @@ class _developerPage extends State<developerPage>{
                   ),
                   child: Row(
                       children:<Widget>[
-                        Container(
+                        Container( //대표 이미지를 담은 Container
                             width:135,
                             child: Image.asset('image/채린 미모티콘.png')
                         ),
-                        Container(
+                        Container( //이름, 학번, e-mail 관련 정보를 담은 Container
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -148,7 +146,7 @@ class _developerPage extends State<developerPage>{
                       ]
                   )
               ),
-              Container(
+              Container( //개발자의 모든 정보를 담고 있는 Container
                   width: width* 1,
                   height: height* 0.17,
                   decoration: BoxDecoration(
@@ -156,11 +154,11 @@ class _developerPage extends State<developerPage>{
                   ),
                   child: Row(
                       children:<Widget>[
-                        Container(
+                        Container( //대표 이미지를 담은 Container
                             width:135,
                             child: Image.asset('image/민성 미모티콘.png')
                         ),
-                        Container(
+                        Container( //이름, 학번, e-mail 관련 정보를 담은 Container
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -197,7 +195,7 @@ class _developerPage extends State<developerPage>{
                       ]
                   )
               ),
-              Container(
+              Container(//개발자의 모든 정보를 담고 있는 Container
                   width: width* 1,
                   height: height* 0.17,
                   decoration: BoxDecoration(
@@ -205,11 +203,11 @@ class _developerPage extends State<developerPage>{
                   ),
                   child: Row(
                       children:<Widget>[
-                        Container(
+                        Container( //대표 이미지를 담은 Container
                             width:135,
                             child: Image.asset('image/유경 미모티콘.png')
                         ),
-                        Container(
+                        Container( //이름, 학번, e-mail 관련 정보를 담은 Container
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
