@@ -17,7 +17,7 @@ class CreateDialog extends StatefulWidget {
   int selectedValue1 = 1;
   int selectedValue2 = 1;
   String selectedDateValue = '월요일';
-  Color newColorname=Color(0xff92AE9F);
+  Color newColorname = Color(0xffFD9D9D);
 
   CreateDialog({Key? key,required this.lectures, required this.subjectsController,required this.professorController,required this.placeController,required this.selectedDateValue,required this.selectedValue1,required this.selectedValue2,required this.newColorname}) : super(key: key);
   @override
@@ -62,15 +62,18 @@ class _MyAlertDialogState extends State<CreateDialog> {
                             keyboardType: TextInputType.text,
                           controller: widget.professorController,
                         ),
-                        Row(
-                          children: [
-                            Text("시간", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Row(
+                            children: [
+                              Text("시간", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
+                            ],
+                          ),
                         ),
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(right: 12.0),
                               child: Container(
                                   child: DropdownButton<String>(
                                     value: widget.selectedDateValue,
@@ -89,36 +92,42 @@ class _MyAlertDialogState extends State<CreateDialog> {
                               ),
                             ),
                             Container(
-                                child: DropdownButton<int>(
-                                  value: widget.selectedValue1,
-                                  items: _startList.map((startclass){
-                                        return DropdownMenuItem(
-                                          value: startclass,
-                                          child: Text('$startclass교시'),
-                                        );
-                                      }).toList(),
-                                      onChanged: (dynamic startclass){
-                                      setState((){
-                                        widget.selectedValue1 = startclass;
-                                    });
-                                  },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 2.0),
+                                  child: DropdownButton<int>(
+                                    value: widget.selectedValue1,
+                                    items: _startList.map((startclass){
+                                          return DropdownMenuItem(
+                                            value: startclass,
+                                            child: Text('$startclass교시'),
+                                          );
+                                        }).toList(),
+                                        onChanged: (dynamic startclass){
+                                        setState((){
+                                          widget.selectedValue1 = startclass;
+                                      });
+                                    },
+                                  ),
                                 )
                             ),
                             Text(" 부터 "),
                             Container(
-                                child: DropdownButton<int>(
-                                  value: widget.selectedValue2,
-                                  items: _endList.map((endclass){
-                                    return DropdownMenuItem(
-                                      value: endclass,
-                                      child: Text('$endclass교시'),
-                                    );
-                                  }).toList(),
-                                  onChanged: (dynamic endclass){
-                                    setState((){
-                                      widget.selectedValue2 = endclass;
-                                    });
-                                  },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 2.0),
+                                  child: DropdownButton<int>(
+                                    value: widget.selectedValue2,
+                                    items: _endList.map((endclass){
+                                      return DropdownMenuItem(
+                                        value: endclass,
+                                        child: Text('$endclass교시'),
+                                      );
+                                    }).toList(),
+                                    onChanged: (dynamic endclass){
+                                      setState((){
+                                        widget.selectedValue2 = endclass;
+                                      });
+                                    },
+                                  ),
                                 )
                             ),
 
@@ -130,39 +139,41 @@ class _MyAlertDialogState extends State<CreateDialog> {
                             keyboardType: TextInputType.text,
                           controller: widget.placeController,
                         ),
-                        Row(
-                          children:[
-                            Text('색상', style: TextStyle(fontWeight : FontWeight.bold, color: Colors.black54)),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Row(
+                            children:[
+                              Text('색상', style: TextStyle(fontWeight : FontWeight.bold, color: Colors.black54)),
+                            ],
+                          ),
                         ),
                         Center(
                           child: Column(
-                        children: [
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Radio(
-                                value: 1,
-                                groupValue:id,
-                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffFD9D9D)),
-                                onChanged: (val){
-                                  setState((){
-                                    widget.newColorname= Color(0xffFD9D9D);
-                                    id=1;
-                                  });
-                                }),
-                            Radio(
-                                value: 2,
-//groupValue: _colorSelect,
-                                groupValue:id,
-                                fillColor : MaterialStateColor.resolveWith((states) => Color(0xffD5EFD0)),
-                                onChanged: (val){
-                                  setState((){
-//_colorSelect = 2;
-                                    widget.newColorname= Color(0xffD5EFD0);
-                                    id = 2;
-                                  });
-                                }),
+                            children: [
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Radio(
+                                  value: 1, //groupValue: _colorSelect,
+                                  groupValue:id,
+                                  fillColor : MaterialStateColor.resolveWith((states) => Color(0xffFD9D9D)),
+                                  onChanged: (val){
+                                    setState((){ //_colorSelect = 2;
+                                      widget.newColorname= Color(0xffFD9D9D);
+                                      id = 1;
+                                    });
+                                  }),
+                              Radio(
+                                  value: 2, //groupValue: _colorSelect,
+                                  groupValue:id,
+                                  fillColor : MaterialStateColor.resolveWith((states) => Color(0xffD5EFD0)),
+                                  onChanged: (val){
+                                    setState((){
+  //_colorSelect = 2;
+                                      widget.newColorname= Color(0xffD5EFD0);
+                                      id = 2;
+                                    });
+                                  }),
                             Radio(
                                 value: 3,
                                 groupValue: id,
@@ -267,9 +278,6 @@ class _MyAlertDialogState extends State<CreateDialog> {
                         print(widget.lectures);
                         widget.subjectsController.clear();
                         widget.professorController.clear();
-                        //_selectedDateValue.clear();
-                        //_selectedValue1.clear();
-                        //_selectedValue2.clear();
                         widget.placeController.clear();
 
                       });
