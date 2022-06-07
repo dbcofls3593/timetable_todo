@@ -6,11 +6,10 @@ class TodoList extends StatefulWidget {
   @override
   _TodoListState createState() => new _TodoListState();
 }
-List<Todo> _todos = <Todo>[];
+
 class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<TodoList>{
 
   final TextEditingController _textFieldController = TextEditingController();
-
 
   @override
   bool get wantKeepAlive => true;
@@ -138,7 +137,6 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
           ],
         );
       },
-
     );
   }
 

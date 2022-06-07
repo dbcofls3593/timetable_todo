@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class developerPage extends StatefulWidget{
   const developerPage({Key? key}) : super(key: key);
 

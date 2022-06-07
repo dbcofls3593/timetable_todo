@@ -1,5 +1,3 @@
-// import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
 import 'package:timetable_todo/main.dart';
@@ -10,6 +8,7 @@ class CreateDialog extends StatefulWidget {
   final TextEditingController subjectsController;
   final TextEditingController professorController;
   final TextEditingController placeController;
+
   int selectedValue1 = 1;
   int selectedValue2 = 1;
   String selectedDateValue = '월요일';
@@ -26,7 +25,9 @@ class _MyAlertDialogState extends State<CreateDialog> {
   final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
 
-   int id=1;
+  // Radio button group value
+   int id = 1;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -115,7 +116,6 @@ class _MyAlertDialogState extends State<CreateDialog> {
                                     },
                                   ),
                             ),
-
                           ],
                         ),
                         TextField( //장소 입력
@@ -243,11 +243,10 @@ class _MyAlertDialogState extends State<CreateDialog> {
                                     id = 10;
                                   });
                                 }),
+                              ],
+                            )
                           ],
-                        )
-
-                      ],
-                    ),
+                        ),
                         )
                       ],
                     )
@@ -263,13 +262,15 @@ class _MyAlertDialogState extends State<CreateDialog> {
                         widget.subjectsController.clear();
                         widget.professorController.clear();
                         widget.placeController.clear();
-
                       });
+
                       Navigator.pop(context); //이전 화면을 보여줌
+
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const MyHomePage()),
-                      );
+                        );
+
                       },
                       child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
                     )

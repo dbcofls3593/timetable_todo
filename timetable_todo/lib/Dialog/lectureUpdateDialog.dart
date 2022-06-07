@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
-import 'package:timetable_todo/Dialog/lectureDialog.dart';
 import 'package:timetable_todo/main.dart';
-import 'package:timetable_todo/timetablePage.dart';
-import 'package:timetable_todo/timetableSource/myLecture.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
 
 class UpdateDialog extends StatefulWidget {
-  // final List<Detail> lectures;
   final Detail lecture;
   final TextEditingController subjectsController;
   final TextEditingController professorController;
   final TextEditingController placeController;
+
   int selectedValue1 = 1;
   int selectedValue2 = 1;
   String selectedDateValue = '월요일';
@@ -30,7 +26,9 @@ class _MyAlertDialogState extends State<UpdateDialog> {
   final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
 
-  int id=1;
+  // Radio button group value
+  int id = 1;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -250,7 +248,6 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                                 }),
                           ],
                         )
-
                       ],
                     ),
                   )
