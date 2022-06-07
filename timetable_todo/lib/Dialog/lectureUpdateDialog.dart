@@ -17,6 +17,7 @@ class UpdateDialog extends StatefulWidget {
   String selectedDateValue = '월요일';
   Color newColorname = Color(0xffFD9D9D);
 
+  // UpdateDialog 생성자, 객체 전달, 생명주기
   UpdateDialog({Key? key,required this.lecture, required this.subjectsController,required this.professorController,required this.placeController,required this.selectedDateValue,required this.selectedValue1,required this.selectedValue2,required this.newColorname}) : super(key: key);
   @override
   _MyAlertDialogState createState() => _MyAlertDialogState();
@@ -37,20 +38,20 @@ class _MyAlertDialogState extends State<UpdateDialog> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
         title: Text('수업 수정', style: TextStyle(fontWeight : FontWeight.bold)),
         content:
-        Container( //수업명, 교수명, 시간, 장소, 색상을 설정하는 Container
+        Container( // 수업명, 교수명, 시간, 장소, 색상을 설정하는 Container
           width: 500,
           padding: EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView( //행과 열에 스크롤 기능
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField( //수업명 입력
+                  TextField( // 수업명 입력
                     decoration: InputDecoration(labelText: '수업명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
                     controller: widget.subjectsController,
                   ),
-                  TextField( //수업명 입력
+                  TextField( // 수업명 입력
                     decoration: InputDecoration(labelText: '교수명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
@@ -64,7 +65,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                       ],
                     ),
                   ),
-                  Row(
+                  Row( // 시간 설정을 담고 있는 Row
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 12.0),
@@ -85,7 +86,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                             )
                         ),
                       ),
-                      Container( //시작 교시 설정을 담고 있는 Container
+                      Container( // 시작 교시 설정을 담고 있는 Container
                           child: Padding(
                             padding: const EdgeInsets.only(right: 2.0),
                             child: DropdownButton<int>(
@@ -105,7 +106,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                           )
                       ),
                       Text(" 부터 "),
-                      Container( //끝 교시 설정을 담고 있는 Container
+                      Container( // 끝 교시 설정을 담고 있는 Container
                           child: Padding(
                             padding: const EdgeInsets.only(left: 2.0),
                             child: DropdownButton<int>(
@@ -127,7 +128,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
 
                     ],
                   ),
-                  TextField( //장소 입력
+                  TextField( // 장소 입력
                     decoration: InputDecoration(labelText: '장소'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
@@ -142,9 +143,9 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                     ),
                   ),
                   Center(
-                    child: Column( //설정 가능한 색상을 보여주는 Column
+                    child: Column( // 설정 가능한 색상을 보여주는 Column
                       children: [
-                        Row( //설정 가능한 색상을 보여주는 Column
+                        Row( // 설정 가능한 색상을 보여주는 Row
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
@@ -267,7 +268,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
         actions: <Widget>[
           TextButton(
               onPressed: () {
-                setState(() { //버튼을 눌렀을 때 값이 객체 안으로 들어가며 수정이 반영됨.
+                setState(() { // 버튼을 눌렀을 때 값이 객체 안으로 들어가며 수정이 반영됨.
                   widget.lecture.color = widget.newColorname;
                   widget.lecture.subjects = widget.subjectsController.text;
                   widget.lecture.days = widget.selectedDateValue;
@@ -279,7 +280,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                   widget.placeController.clear();
 
                 });
-                Navigator.pop(context); //이전 화면을 보여줌
+                Navigator.pop(context); // 이전 화면을 보여줌
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MyHomePage()),
