@@ -26,11 +26,7 @@ class UpdateDialog extends StatefulWidget {
 class _MyAlertDialogState extends State<UpdateDialog> {
 
   final List<int> _startList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-
   final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-
   final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
 
   int id=1;
@@ -41,20 +37,20 @@ class _MyAlertDialogState extends State<UpdateDialog> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0)),
         title: Text('수업 수정', style: TextStyle(fontWeight : FontWeight.bold)),
         content:
-        Container(
+        Container( //수업명, 교수명, 시간, 장소, 색상을 설정하는 Container
           width: 500,
           padding: EdgeInsets.only(left: 20, right: 20),
-          child: SingleChildScrollView(
+          child: SingleChildScrollView( //행과 열에 스크롤 기능
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(
+                  TextField( //수업명 입력
                     decoration: InputDecoration(labelText: '수업명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
                     controller: widget.subjectsController,
                   ),
-                  TextField(
+                  TextField( //수업명 입력
                     decoration: InputDecoration(labelText: '교수명'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
@@ -89,7 +85,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                             )
                         ),
                       ),
-                      Container(
+                      Container( //시작 교시 설정을 담고 있는 Container
                           child: Padding(
                             padding: const EdgeInsets.only(right: 2.0),
                             child: DropdownButton<int>(
@@ -109,7 +105,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                           )
                       ),
                       Text(" 부터 "),
-                      Container(
+                      Container( //끝 교시 설정을 담고 있는 Container
                           child: Padding(
                             padding: const EdgeInsets.only(left: 2.0),
                             child: DropdownButton<int>(
@@ -131,7 +127,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
 
                     ],
                   ),
-                  TextField(
+                  TextField( //장소 입력
                     decoration: InputDecoration(labelText: '장소'),
                     style: TextStyle(fontWeight : FontWeight.bold),
                     keyboardType: TextInputType.text,
@@ -146,9 +142,9 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                     ),
                   ),
                   Center(
-                    child: Column(
+                    child: Column( //설정 가능한 색상을 보여주는 Column
                       children: [
-                        Row(
+                        Row( //설정 가능한 색상을 보여주는 Column
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
@@ -271,7 +267,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
         actions: <Widget>[
           TextButton(
               onPressed: () {
-                setState(() {
+                setState(() { //버튼을 눌렀을 때 값이 객체 안으로 들어가며 수정이 반영됨.
                   widget.lecture.color = widget.newColorname;
                   widget.lecture.subjects = widget.subjectsController.text;
                   widget.lecture.days = widget.selectedDateValue;
@@ -283,7 +279,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                   widget.placeController.clear();
 
                 });
-                Navigator.pop(context);
+                Navigator.pop(context); //이전 화면을 보여줌
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MyHomePage()),
