@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Todo {
+class Todo { //todo list의 정보를 담기위한 class
   Todo({required this.name, required this.checked});
   final String name;
   bool checked;
 }
 
-class TodoItem extends StatelessWidget {
+class TodoItem extends StatelessWidget { //todo list의 상태를 담기위한 class
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
@@ -15,7 +15,7 @@ class TodoItem extends StatelessWidget {
   final Todo todo;
   final onTodoChanged;
 
-  TextStyle? _getTextStyle(bool checked) {
+  TextStyle? _getTextStyle(bool checked) { //text가 체크되면 글씨의 색상과 선을 return 해줌.
     if (!checked) return TextStyle(
       fontSize: 17,
     );
@@ -29,8 +29,7 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Column(
+    return Column( //todo list에서 check 부분을 관리
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ListTile(
