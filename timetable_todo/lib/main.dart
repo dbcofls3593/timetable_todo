@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_todo/timetablePage.dart';
-import 'package:timetable_todo/todoItem.dart';
 import 'package:timetable_todo/todoPage.dart';
 import 'package:timetable_todo/developerPage.dart';
-import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
-import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
-import 'package:timetable_todo/Dialog/lectureDeleteDialog.dart';
-import 'package:timetable_todo/Dialog/lectureDialog.dart';
 import './timetableSource/Detail.dart';
 
-List<Detail> lectures = <Detail>[Detail(Colors.yellow,'','','',0,1,'',[Todo(name: 'name', checked: false),Todo(name: 'name1', checked: false)])];
+List<Detail> lectures = <Detail>[Detail(Colors.yellow,'','','',0,0,'',[])];
 
 void main() {
   runApp(MyApp());
@@ -17,28 +12,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'TTD',
-      theme: ThemeData(
-        //final ThemeData base = ThemeData.light();
-        //return base.copyWith(
-        primaryColor: Colors.green,
-        //scaffoldBackgroundColor: Colors.red,
-        cardColor: Colors.redAccent,
-        //),
-      ),
-      home: MyHomePage(title: ""),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -63,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             topRight: Radius.circular(10),
           )
         ),
-        indicatorColor: Colors.redAccent,
         indicatorWeight: 30,
         tabs: <Tab>[
           Tab(icon: Icon(Icons.dashboard,color: Color(0xff323232),),),
@@ -71,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           Tab(icon: Icon(Icons.people_alt,color: Color(0xff323232)),),
         ], controller: controller,
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
   @override

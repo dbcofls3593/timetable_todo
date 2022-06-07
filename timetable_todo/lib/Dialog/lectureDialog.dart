@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:timetable_todo/Dialog/lectureCreateDialog.dart';
-import 'package:timetable_todo/Dialog/todoDeleteDialog.dart';
 import 'package:timetable_todo/main.dart';
 import 'package:timetable_todo/timetablePage.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
-import 'package:timetable_todo/timetableSource/myLecture.dart';
 import '../todoItem.dart';
 import 'lectureUpdateDialog.dart';
+
 class LectureDialog extends StatefulWidget {
   Detail lecture;
   LectureDialog({Key? key,required this.lecture}) : super(key: key);
@@ -14,7 +12,9 @@ class LectureDialog extends StatefulWidget {
   @override
   State<LectureDialog> createState() => _LectureDialogState();
 }
+
 Color colorName = Color(0xffFD9D9D);
+
 class _LectureDialogState extends State<LectureDialog> {
   final TextEditingController _textFieldController = TextEditingController();
   @override
@@ -112,7 +112,7 @@ class _LectureDialogState extends State<LectureDialog> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                const MyHomePage(title: "TDD")),
+                                                const MyHomePage()),
                                           );
                                         },
                                         child: const Text(
@@ -125,7 +125,8 @@ class _LectureDialogState extends State<LectureDialog> {
                                     ),
                                   ],
                                 )
-                        ))
+                        )
+                )
               ],
             ),
           ]
@@ -215,6 +216,7 @@ class _LectureDialogState extends State<LectureDialog> {
   void _addTodoItem(String name) {
     setState(() {
       widget.lecture.lectureTodos.add(Todo(name: name, checked: false));
+      lectures[0].lectureTodos.add(widget.lecture.lectureTodos[-1]);
     });
     _textFieldController.clear();
   }
@@ -240,7 +242,6 @@ class _LectureDialogState extends State<LectureDialog> {
           ],
         );
       },
-
     );
   }
 }

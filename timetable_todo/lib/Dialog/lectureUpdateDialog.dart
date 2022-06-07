@@ -272,16 +272,12 @@ class _MyAlertDialogState extends State<UpdateDialog> {
           TextButton(
               onPressed: () {
                 setState(() {
-                  // widget.lectures.clear();
                   widget.lecture.color = widget.newColorname;
                   widget.lecture.subjects = widget.subjectsController.text;
                   widget.lecture.days = widget.selectedDateValue;
                   widget.lecture.start = widget.selectedValue1;
                   widget.lecture.end = widget.selectedValue2;
                   widget.lecture.place = widget.placeController.text;
-
-                  // widget.lectures.add(Detail(widget.newColorname, widget.subjectsController.text, widget.professorController.text, widget.selectedDateValue, widget.selectedValue1, widget.selectedValue2, widget.placeController.text));
-                  // print(widget.lectures);
                   widget.subjectsController.clear();
                   widget.professorController.clear();
                   widget.placeController.clear();
@@ -290,7 +286,7 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                 Navigator.pop(context);
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
                 );
               },
               child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))

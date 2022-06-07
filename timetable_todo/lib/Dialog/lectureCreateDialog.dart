@@ -3,11 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/text_style.dart';
 import 'package:timetable_todo/main.dart';
-import 'package:timetable_todo/timetablePage.dart';
-import 'package:timetable_todo/timetableSource/myLecture.dart';
-import 'package:timetable_todo/timetableSource/myTable.dart';
 import 'package:timetable_todo/timetableSource/Detail.dart';
-import 'package:timetable_todo/timetableSource/hourTable.dart';
 
 class CreateDialog extends StatefulWidget {
   final List<Detail> lectures;
@@ -278,7 +274,7 @@ class _MyAlertDialogState extends State<CreateDialog> {
                       Navigator.pop(context); //이전 화면을 보여줌
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage(title: "TDD")),
+                        MaterialPageRoute(builder: (context) => const MyHomePage()),
                       );
                       },
                       child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))

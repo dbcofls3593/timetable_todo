@@ -82,13 +82,12 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
                 child: ListView(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   children:
-                  lectures[1].lectureTodos.map((Todo todo) {
+                  lectures[0].lectureTodos.map((Todo todo) {
                     return TodoItem(
                       todo: todo,
                       onTodoChanged: _handleTodoChange,
                     );
-                  }).toList(),
-
+                  }).toList()
                 ),
               ),
             ],
@@ -113,7 +112,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
 
   void _removeTodoItem() {
     setState(() {
-      lectures[1].lectureTodos.clear();
+      lectures[0].lectureTodos.clear();
     });
   }
 
