@@ -26,8 +26,8 @@ class UpdateDialog extends StatefulWidget {
 
 class _MyAlertDialogState extends State<UpdateDialog> {
 
-  final List<int> _startList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  final List<int> _startList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  final List<int> _endList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   final List<String> _dateList = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
 
   int id=1;
@@ -87,8 +87,6 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                         ),
                       ),
                       Container( // 시작 교시 설정을 담고 있는 Container
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 2.0),
                             child: DropdownButton<int>(
                               value: widget.selectedValue1,
                               items: _startList.map((startclass){
@@ -103,12 +101,9 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                                 });
                               },
                             ),
-                          )
                       ),
                       Text(" 부터 "),
                       Container( // 끝 교시 설정을 담고 있는 Container
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 2.0),
                             child: DropdownButton<int>(
                               value: widget.selectedValue2,
                               items: _endList.map((endclass){
@@ -123,7 +118,6 @@ class _MyAlertDialogState extends State<UpdateDialog> {
                                 });
                               },
                             ),
-                          )
                       ),
 
                     ],
