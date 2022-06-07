@@ -263,14 +263,11 @@ class _MyAlertDialogState extends State<CreateDialog> {
                         widget.professorController.clear();
                         widget.placeController.clear();
                       });
-
                       Navigator.pop(context); //이전 화면을 보여줌
-
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const MyHomePage()),
                         );
-
                       },
                       child: Text('확인', style: TextStyle(color: Colors.indigo, fontWeight : FontWeight.bold))
                     )

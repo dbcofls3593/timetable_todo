@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Todo { //todo list의 정보를 담기위한 class
+class Todo { //todo의 정보를 담기위한 class
   Todo({required this.name, required this.checked});
   final String name;
   bool checked;
 }
 
-class TodoItem extends StatelessWidget { //todo list의 상태를 담기위한 class
+class TodoItem extends StatelessWidget { //todo의 상태를 담기위한 class
   TodoItem({
     required this.todo,
     required this.onTodoChanged,
@@ -29,7 +29,7 @@ class TodoItem extends StatelessWidget { //todo list의 상태를 담기위한 c
 
   @override
   Widget build(BuildContext context) {
-    return Column( //todo list에서 check 부분을 관리
+    return Column( //todo에서 check 부분을 관리
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ListTile(
