@@ -217,7 +217,6 @@ class _LectureDialogState extends State<LectureDialog> {
   void _addTodoItem(String name) { // todo add
     setState(() {
       widget.lecture.lectureTodos.add(Todo(name: name, checked: false));
-      lectures[0].lectureTodos.add(widget.lecture.lectureTodos[-1]);
     });
     _textFieldController.clear();
   }
