@@ -21,7 +21,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
     return  Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0),
-        child: AppBar(
+        child: AppBar( //todopage의 상단 관련코드
           automaticallyImplyLeading: false,
           flexibleSpace: Container(),
           title: Padding(
@@ -44,7 +44,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
           elevation: 0.3,
         ),
       ),
-      body: Container(
+      body: Container( //todolist의 소제목을 담은 Container
         child: Padding(
           padding: EdgeInsets.only(
             left:MediaQuery.of(context).size.width*0.08,
@@ -78,7 +78,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
                   )
                 ],
               ),
-              Expanded(
+              Expanded( //todolist의 내용을 담은 부분
                 child: ListView(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   children:
@@ -97,26 +97,26 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
     );
   }
 
-  void _handleTodoChange(Todo todo) {
+  void _handleTodoChange(Todo todo) { //todo를 체크했을 때, 체크박스 변환 함수
     setState(() {
       todo.checked = !todo.checked;
     });
   }
 
-  void _addTodoItem(String name) {
+  void _addTodoItem(String name) { //todo add
     setState(() {
       lectures[0].lectureTodos.add(Todo(name: name, checked: false));
     });
     _textFieldController.clear();
   }
 
-  void _removeTodoItem() {
+  void _removeTodoItem() { //todo remove
     setState(() {
       lectures[0].lectureTodos.clear();
     });
   }
 
-  Future<void> _displayDialog() async {
+  Future<void> _displayDialog() async { //todo add dialog
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -142,7 +142,7 @@ class _TodoListState extends State<TodoList> with AutomaticKeepAliveClientMixin<
     );
   }
 
-  Future<void> _removeDialog() async {
+  Future<void> _removeDialog() async { //todo remove dialog
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
