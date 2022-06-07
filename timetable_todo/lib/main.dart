@@ -33,14 +33,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: TabBarView(
+      body: TabBarView( // TabBar를 각각 Page 경로를 선언해줌.
         physics: NeverScrollableScrollPhysics(),
         children: <Widget> [timetablePage(),TodoList(),developerPage()],
         controller: controller,
       ),
-      bottomNavigationBar: TabBar(
+      bottomNavigationBar: TabBar( // TabBar 모양 설정
         indicator: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
@@ -48,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           )
         ),
         indicatorWeight: 30,
-        tabs: <Tab>[
+        tabs: <Tab>[ //TabBar의 icon 설정
           Tab(icon: Icon(Icons.dashboard,color: Color(0xff323232),),),
           Tab(icon: Icon(Icons.check_circle_outline,color: Color(0xff323232)),),
           Tab(icon: Icon(Icons.people_alt,color: Color(0xff323232)),),
@@ -57,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     );
   }
   @override
-  void initState() {
+  void initState() { //3개의 Tab으로 초기화
     // TODO: implement initState
     super.initState();
     controller = TabController(length: 3, vsync: this);
